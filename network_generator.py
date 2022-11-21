@@ -27,14 +27,14 @@ def calc_size(smiles_seq):
 
 
 def calc_sparse_vector(smiles_seq, radius=2):
-    # max_value = max(FGP_MAP_DICT)
-    max_value = max(calc_fgp_map(smiles_seq))
+    fgp_map = calc_fgp_map(smiles_seq)
+    max_value = len(fgp_map)
     matrix = np.zeros((len(smiles_seq), max_value))
     for smiles_id, smiles in enumerate(smiles_seq):
         mol = Chem.MolFromSmiles(smiles)
         fgp = AllChem.GetMorganFingerprint(mol, radius)
         for hash_of_fragment, num_of_fragments in fgp.GetNonzeroElements().items():
-            matrix[smiles_id, hash_of_fragment] = num_of_fragments
+            matrix[smiles_id, fgp_map[hash_of_fragment]] = num_of_fragments
     sparse_matrix = sparse.csr_matrix(matrix)
     return sparse_matrix
 
