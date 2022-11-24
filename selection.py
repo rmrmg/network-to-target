@@ -7,7 +7,7 @@ from rdkit.Chem import AllChem
 Input data format
 { 'substrates': list  # list of smiles string
   'current_products': list of smiles
-  'generations': list of list of smiles, each list represent one synthetic generation
+  'generations': list of lists of smiles, each list represent one synthetic generation
   'target': smiles
   'optimization_from': int | None  # number of 1st optimization generation
 }
@@ -16,13 +16,13 @@ output format is similar the same. In output data:
 1. pruned 'current_products' goes to 'generations'
 2. current_products in removed (remains if --dont-clean-current is selected)
 3. new key is added 'reactions_to_check' with proposed substrates for 1, 2, 3, and 4 components reactions.
-   Proposed substrates is tuple with 1, 2, 3 or 4 smiles and contains all combination of substrates which should be
-   checked by forward-synthesis software (in short FSS, e. g. Allchemy). For example tuple with 1 substrates means FSS
-   need to check if the substrate can undergo one-component reactions (e.g. rearrangement, cyclisation),
-   tuple with 2 substrates indicates FSS need to check if those two substrates can react with each other in
+   Proposed substrates is tuple with 1, 2, 3 or 4 smiles and contains all combinations of substrates which should be
+   checked by forward-synthesis software (in short FSS, e. g. Allchemy). For example tuple with 1 substrate means FSS
+   needs to check if the substrate can undergo one-component reactions (e.g. rearrangement, cyclisation),
+   tuple with 2 substrates indicates FSS needs to check if those two substrates can react with each other in
    two-component reaction (e.g. Diels-Alder, esterification, ...), tuple with 3 and 4 substrates indicates FSS
-   need to check if those 3 or 4 substrates can undergo 3 or 4 components reaction(s).
-   If option --disable-3c od --disable-4c is selected substate for 3-component and 4-component respectively
+   needs to check if those 3 or 4 substrates can undergo 3 or 4 components reaction(s).
+   If option --disable-3c or --disable-4c is selected substates for 3-component and 4-component reactions respectively
    will not be proposed.
 
 """
