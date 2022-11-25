@@ -3,7 +3,7 @@ Here we deposit the code associated with the article
 by 
 Wiktor Beker, Agnieszka Wołos, Martyna Moskal and Bartosz A. Grzybowski 
 
-===
+----
 Deposited code consists of two files:
 
 - network_generator.py - the code ilustrate how to perform forward synthetic calculation toward given target.
