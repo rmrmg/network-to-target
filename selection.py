@@ -9,17 +9,23 @@ Input data format
   'current_products': list of smiles
   'generations': list of lists of smiles, each list represent one synthetic generation
   'target': smiles
-  'optimization_from': int | None  # number of 1st optimization generation
+  'optimization_from': int | None  # if set defined at when (which generation) optimization phase was started
 }
+User dont need to provide 'optimization_from' this information will be added to output file when switch from
+diversification to optimization take place. The exact value is for information purpose, the code check only
+in which phase (optimization or diversification) we are.
+All lists of smiles should NOT have duplicates and each smiles can be only on one list. For example
+if some compound is present in 'substrate' shuld be removed from 'generations' and 'current_products'.
 
-output format is similar the same. In output data:
-1. pruned 'current_products' goes to 'generations'
-2. current_products in removed (remains if --dont-clean-current is selected)
+The output format is similar to the input, but there are following differences:
+1. pruned 'current_products' goes to the end of 'generations' (id. new list is appended ).
+2. by default 'current_products' in removed (remains if --dont-clean-current is selected)
 3. new key is added 'reactions_to_check' with proposed substrates for 1, 2, 3, and 4 components reactions.
-   Proposed substrates is tuple with 1, 2, 3 or 4 smiles and contains all combinations of substrates which should be
-   checked by forward-synthesis software (in short FSS, e. g. Allchemy). For example tuple with 1 substrate means FSS
-   needs to check if the substrate can undergo one-component reactions (e.g. rearrangement, cyclisation),
-   tuple with 2 substrates indicates FSS needs to check if those two substrates can react with each other in
+   The data in 'reactions_to_check' are stored as a dictionary whi following keys: '1c', '2c', '3c' and '4c'.
+   Proposed substrates are stored as tuplse with 1, 2, 3 or 4 smiles and contains all combination of substrates which should be
+   checked by forward-synthesis software (in short FSS, e. g. Allchemy). For example tuple with 1 substrates means FSS
+   need to check if the substrate can undergo one-component reactions (e.g. rearrangement, cyclisation),
+   tuple with 2 substrates indicates FSS need to check if those two substrates can react with each other in
    two-component reaction (e.g. Diels-Alder, esterification, ...), tuple with 3 and 4 substrates indicates FSS
    needs to check if those 3 or 4 substrates can undergo 3 or 4 components reaction(s).
    If option --disable-3c or --disable-4c is selected substates for 3-component and 4-component reactions respectively
