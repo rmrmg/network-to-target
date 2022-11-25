@@ -41,7 +41,7 @@ def calc_sparse_vector(smiles_seq, radius=2):
 
 ##############################################################################################################
 #                    ! ! !     R E A D       M E      ! ! !
-# before running the code you need to provided following data and also adjust calc_synthetic_generation()
+# before running the code you need to provide following data and also adjust calc_synthetic_generation()
 # i.e. properly define listed below global variables
 BUYABLE_SMILES = []  # numpy array of smiles of buyable compounds
 RX_DATABASE = []  # list of reactions, reaction should be provided as Rdkit's ChemicalReaction object
