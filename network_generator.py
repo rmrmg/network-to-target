@@ -46,7 +46,7 @@ def calc_sparse_vector(smiles_seq, radius=2):
 BUYABLE_SMILES = []  # numpy array of smiles of buyable compounds
 RX_DATABASE = []  # list of reactions, reaction should be provided as Rdkit's ChemicalReaction object
 
-# Please remember defined listed above global variable before running the code !!!
+# Please remember to define global variables listed above before running the code !!!
 # ############################################################################################################
 # global variable below will be generated based on given BUYABLE_SMILES
 FGP_MAP_DICT = calc_fgp_map(BUYABLE_SMILES)
@@ -131,7 +131,7 @@ def select_reactions(mol_list, reaction_list=RX_DATABASE, substrate_avoid_id_lis
     * substrate_avoid_id_list constrols which of substrate patterns cannot be used
     * check is 'lazy' - only first template match included
     * if only_first==True, only the first matching reaction is returned (the rest is not checked)
-    Returns list of reactions and list of substrate ids (which of multiple templates was matching)'''
+    Returns list of reactions and list of substrate ids (which of multiple templates were matching)'''
 
     result_reactions, result_substrate_ids = [], []
 
@@ -348,8 +348,8 @@ def calc_synthetic_generation(substrates_to_check):
     """
     obtained_product = []  # list of product smiles
     # here you need to connect forward synthetic software which generate products (when possible) for given substrates
-    # please note '1c', '2c', '3c' and '4c' is only valid compination of substrates and not necessary give any product(s)
-    # especially for multicomponent reaction (3c and 4c) it rather rare situation that given substrate set give any product
+    # please note '1c', '2c', '3c' and '4c' is only valid combination of substrates and not necessary give any product(s)
+    # especially for multicomponent reaction (3c and 4c) it is rather rare situation that given substrate set give any product
     return obtained_product
 
 
@@ -375,8 +375,8 @@ if __name__ == "__main__":
     number_of_generation: int = 4  # number of generation
     w1: int = 225  # beam width in diversification phase
     w2: int = 150  # beam width in optimization phase
-    eta_substrates: int = 0.60  # define how many substraes will be taken to calculation, see paper details
-    # product which has this per cent of atom from target will be classified as heavy
+    eta_substrates: int = 0.60  # defines size of the substrates that will be taken to calculation, see paper details
+    # product which has this per cent (eta_diversity) of heavy atoms from target will be classified as heavy
     # when all products in beam are heavy then we switch from diversification to optimization phase
     eta_diversity: float = 0.3  # define when calculation switch from diversification to optimization phase, see paper for details
     target = 'c1ccccc1C(CN)C(=O)O'  # smiles of target
