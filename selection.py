@@ -11,19 +11,19 @@ Input data format
   'target': smiles
   'optimization_from': int | None  # if set defined at when (which generation) optimization phase was started
 }
-User dont need to provide 'optimization_from' this information will be added to output file when switch from
-diversification to optimization take place. The exact value is for information purpose, the code check only
+User doesn't need to provide 'optimization_from', this information will be added to output file when switch from
+diversification to optimization takes place. The exact value is for information purpose, the code checks only
 in which phase (optimization or diversification) we are.
 All lists of smiles should NOT have duplicates and each smiles can be only on one list. For example
-if some compound is present in 'substrate' shuld be removed from 'generations' and 'current_products'.
+if some compound is present in 'substrate', it should be removed from 'generations' and 'current_products'.
 
 The output format is similar to the input, but there are following differences:
 1. pruned 'current_products' goes to the end of 'generations' (id. new list is appended ).
-2. by default 'current_products' in removed (remains if --dont-clean-current is selected)
-3. new key is added 'reactions_to_check' with proposed substrates for 1, 2, 3, and 4 components reactions.
-   The data in 'reactions_to_check' are stored as a dictionary whi following keys: '1c', '2c', '3c' and '4c'.
-   Proposed substrates are stored as tuplse with 1, 2, 3 or 4 smiles and contains all combination of substrates which should be
-   checked by forward-synthesis software (in short FSS, e. g. Allchemy). For example tuple with 1 substrates means FSS
+2. by default 'current_products' is removed (remains if --dont-clean-current is selected)
+3. new key is added to 'reactions_to_check' with proposed substrates for 1, 2, 3, and 4 component reactions.
+   The data in 'reactions_to_check' is stored as a dictionary with following keys: '1c', '2c', '3c' and '4c'.
+   Proposed substrates are stored as tuples with 1, 2, 3 or 4 smiles and contain all combinations of substrates which should be
+   checked by forward-synthesis software (in short FSS, e. g. Allchemy). For example tuple with 1 substrate means FSS
    need to check if the substrate can undergo one-component reactions (e.g. rearrangement, cyclisation),
    tuple with 2 substrates indicates FSS need to check if those two substrates can react with each other in
    two-component reaction (e.g. Diels-Alder, esterification, ...), tuple with 3 and 4 substrates indicates FSS
@@ -67,7 +67,7 @@ def prune_targeted_search_products(products, target_info, beta=200, minimum_size
     Arguments:
         - products - list of smiles; products of single synthetic generation
         - target_info - dict with information about target
-        - alfa - expected number of product when NOT only high molecule present
+        - alfa - expected number of products when NOT only high molecule present
         - beta - expected number of products when only molecules higher than target, ie. having more
                  heavy atom than: target_size * minimum_size_ration
         - minimum_size_ratio - define when switch between alfa and beta limit (see above)
