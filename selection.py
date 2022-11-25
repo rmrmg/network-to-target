@@ -65,13 +65,13 @@ def calc_similarity(smiles, target_info, args):
 def prune_targeted_search_products(products, target_info, beta=200, minimum_size_ratio=0.45, alfa=300):
     """
     Arguments:
-        - products - list of smiles; The smiles are product of single synthetic generation.
+        - products - list of smiles; The smiles are products of single synthetic generation.
         - target_info - dict with information about target, as returned by calc_target_info() function
-        - alfa - expected number of products when NOT only "heavy molecules" present. 
-             Definition of "Heavy molemole": molecule which number of atom is higher than:
-             target_size * minimum_size_ration. Note this count number of atoms not mass.
-        - beta - expected number of products when only "heavy molecules".
-        - minimum_size_ratio - define when switch between alfa and beta limit (see above)
+        - alfa - expected number of products when NOT only "heavy molecules" present (W1). 
+             Definition of "Heavy molemole": molecule with number of heavy atoms higher than:
+             target_size * minimum_size_ration. Note it refers to number of heavy atoms not mass.
+        - beta - expected number of products when only "heavy molecules" are retained (W2).
+        - minimum_size_ratio - defines when switch between alfa and beta limit takes place (eta_diverse) (see above)
     """
     Nprods = len(products)
 
