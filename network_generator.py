@@ -44,14 +44,15 @@ def calc_sparse_vector(smiles_seq, radius=2):
 # before running the code you need to provided following data and also adjust calc_synthetic_generation()
 # i.e. properly define listed below global variables
 BUYABLE_SMILES = []  # numpy array of smiles of buyable compounds
-FGP_MAP_DICT = calc_fgp_map(BUYABLE_SMILES)       # dont need to be changed when BUYABLE_SMILES is correctly defined
-BUYABLE_SIZES = calc_size(BUYABLE_SMILES)         # as above
-BUYABLE_SMILES_SET = set(BUYABLE_SMILES)          # as above
-BUYABLE_MTX = calc_sparse_vector(BUYABLE_SMILES)  # as above
 RX_DATABASE = []  # list of reactions, reaction should be provided as Rdkit's ChemicalReaction object
 
 # Please remember defined listed above global variable before running the code !!!
 # ############################################################################################################
+# global variable below will be generated based on given BUYABLE_SMILES
+FGP_MAP_DICT = calc_fgp_map(BUYABLE_SMILES)
+BUYABLE_SIZES = calc_size(BUYABLE_SMILES)
+BUYABLE_SMILES_SET = set(BUYABLE_SMILES)
+BUYABLE_MTX = calc_sparse_vector(BUYABLE_SMILES)
 
 
 def sparse_tanimoto(query, sparse_table):
