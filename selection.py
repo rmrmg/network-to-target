@@ -21,14 +21,14 @@ The output format is similar to the input, but there are following differences:
 1. pruned 'current_products' goes to the end of 'generations' (id. new list is appended ).
 2. by default 'current_products' in removed (remains if --dont-clean-current is selected)
 3. new key is added 'reactions_to_check' with proposed substrates for 1, 2, 3, and 4 components reactions.
-   The data are stored as a dictionary whi following keys: '1c', '2c', '3c' and '4c'.
+   The data in 'reactions_to_check' are stored as a dictionary whi following keys: '1c', '2c', '3c' and '4c'.
    Proposed substrates are stored as tuplse with 1, 2, 3 or 4 smiles and contains all combination of substrates which should be
    checked by forward-synthesis software (in short FSS, e. g. Allchemy). For example tuple with 1 substrates means FSS
    need to check if the substrate can undergo one-component reactions (e.g. rearrangement, cyclisation),
    tuple with 2 substrates indicates FSS need to check if those two substrates can react with each other in
    two-component reaction (e.g. Diels-Alder, esterification, ...), tuple with 3 and 4 substrates indicates FSS
-   need to check if those 3 or 4 substrates can undergo 3 or 4 components reaction(s).
-   If option --disable-3c od --disable-4c is selected substate for 3-component and 4-component respectively
+   needs to check if those 3 or 4 substrates can undergo 3 or 4 components reaction(s).
+   If option --disable-3c or --disable-4c is selected substates for 3-component and 4-component reactions respectively
    will not be proposed.
 
 """
