@@ -144,7 +144,7 @@ def select_reactions(mol_list, reaction_list=RX_DATABASE, substrate_avoid_id_lis
             if template_id in avoid:
                 continue
             template = rx.rxn.GetReactantTemplate(template_id)
-            is_matching = any(check_has_unmapped_match(mol, template) for mol in mol_list)
+            is_matching = any(check_has_match(mol, template) for mol in mol_list)
             if is_matching:
                 result_reactions.append(rx)
                 result_substrate_ids.append(avoid + [template_id])
@@ -189,14 +189,9 @@ def mol_to_vector(mol, radius=2):
     return fgp_to_vector(fgp, FGP_MAP_DICT)
 
 
-def check_has_unmapped_match(mol, pattern):
-    '''Checks whether a mol contains pattern, assuming that match has to contain non-mapped atom'''
-    for match in mol.GetSubstructMatches(pattern):
-        for x in match:
-            if mol.GetAtomWithIdx(x).GetIsotope() == 0:
-                return True
-    return False
-
+def check_has_match(mol, pattern):
+    return  mol.HasSubstructMatch(pattern):
+    
 
 similarity_server = SparseTanimotoServer(10)
 
