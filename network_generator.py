@@ -48,7 +48,7 @@ RX_DATABASE = []  # list of reactions, reaction should be provided as Rdkit's Ch
 
 # Please remember to define global variables listed above before running the code !!!
 # ############################################################################################################
-# global variable below will be generated based on given BUYABLE_SMILES
+# global variables below will be generated based on given BUYABLE_SMILES
 FGP_MAP_DICT = calc_fgp_map(BUYABLE_SMILES)
 BUYABLE_SIZES = calc_size(BUYABLE_SMILES)
 BUYABLE_SMILES_SET = set(BUYABLE_SMILES)
@@ -375,7 +375,7 @@ if __name__ == "__main__":
     number_of_generation: int = 4  # number of generation
     w1: int = 225  # beam width in diversification phase
     w2: int = 150  # beam width in optimization phase
-    eta_substrates: int = 0.60  # defines size of the substrates that will be taken to calculation, see paper details
+    eta_substrates: int = 0.60  # defines size of the substrates that will be taken to calculation, see paper for details
     # product which has this per cent (eta_diversity) of heavy atoms from target will be classified as heavy
     # when all products in beam are heavy then we switch from diversification to optimization phase
     eta_diversity: float = 0.3  # define when calculation switch from diversification to optimization phase, see paper for details
