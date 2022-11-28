@@ -7,7 +7,7 @@ from rdkit.Chem import AllChem
 Input data format
 { 'substrates': list  # list of smiles string
   'current_products': list of smiles
-  'generations': list of lists of smiles, each list represent one synthetic generation
+  'generations': list of lists of smiles, each list represents one synthetic generation
   'target': smiles
   'optimization_from': int | None  # if set defined at when (which generation) optimization phase was started
 }
